@@ -130,3 +130,24 @@ ORDER BY ANIMAL_ID ASC
 - 예제와 실제 데이터가 다른건가 싶다.(예제에는 찾으면 답이 2개 나온다 하는데, 실제 돌려보면 수십 개 나옴)
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 2. 역순 정렬 </summary>
+
+## 코드카타 SQL 2. 역순 정렬
+
+모든 동물의 이름과 보호 시작일을 역순으로 정렬하라
+
+### 답
+```sql
+SELECT NAME, DATETIME
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID DESC
+```
+
+### 후기
+- 정렬 기준이 SELECT
+- 전체. 찾고자 하는 목록이 FROM
+- 보여주는 것이 ORDER
+
+</details>
