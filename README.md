@@ -7,8 +7,8 @@
 두 수의 범위가 -50000 ~ 50000이다.
 다음 코드가 올바른 답이 나올 수 있도록 채워넣어라.
 ``` java
-class Subtraction {
-    public int subtraction(int num1, int num2) {
+class Solution  {
+    public int solution (int num1, int num2) {
         int answer = 0;
         return answer;
     }
@@ -43,10 +43,12 @@ int answer = num1 - num2 ; 을 했다.
     
 ## 코드카타 알고리즘 2. 두 수의 곱 계산
 두 수의 범위가 0 ~ 100이다.
-다음 코드가 올바른 답이 나올 수 있도록 채워넣어라.
+다음 코드가 num1에서 num2를 뺏을 때, 올바른 답이 나올 수 있도록 채워넣어라.
+예1) num1이 5이고 num2가 3이면 값이 2가 나온다.
+예2) num1이 0이고 num2가 5이면 값이 -5가 나온다.
 ```java
-public class Multiplication {
-    public int multiplication(int num1, int num2) {
+public class Solution  {
+    public int solution (int num1, int num2) {
        int answer = 0;
        return answer;
     }
@@ -65,10 +67,46 @@ public class Multiplication {
 }
 ```
 ### 후기
-1. 두 수의 차 계산에서 실수했던 점만 고려하면 쉽게 해결할 수 있었다.
-
+[ 1. 두 수의 차 계산 ]에서 실수했던 점만 고려하면 쉽게 해결할 수 있었다.
 
 </details>
+
+<details>
+<summary> 코드카타 알고리즘 3. 몫 구하기  </summary>
+
+## 코드카타 알고리즘 3. 몫 구하기  
+두 수의 범위가 0 ~ 100이다.
+다음 코드가 num1에서 num2를 나눴을 때, 올바른 답이 나올 수 있도록 채워넣어라.
+예1) num1이 10이고, num2가 5일 때, 값이 2가 나온다.
+예2) num1이 7이고, num2가 2일 때, 값이 3 나온다.
+```java
+public class Multiplication {
+    public int multiplication(int num1, int num2) {
+       int answer = 0;
+       return answer;
+    }
+}
+```
+
+### 답
+```java
+public class Quotient {
+    public int quotient(int num1, int num2) {
+        int answer = 0;
+        if (0 <= num1 && num2 <= 100) {
+            answer = num1 / num2;
+        }
+        return answer;
+    }
+}
+```
+
+### 후기 
+한 번 틀렸다. 보통 나누기에선 나머지를 쓰다보니 무지성으로 %부터 붙였었다. 
+문제를 잘 읽고 풀어보자. 나머지 구하는 문제가 아니였기에 /만 붙이면 됐다.
+
+</details>
+
 
 # 코드카타 SQL
 
