@@ -107,6 +107,25 @@ public class Quotient {
 
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 4. 나이 출력하기(정확히는 태어난 해)  </summary>
+두 수의 범위가 0 이상, 120 이하일 때, 2022년도 기준으로 나이를 통해 대상의 출생년도를 찾아라.
+예) 40세 -> 1983년 출생 | 23세 -> 2000년 출생
+
+```java
+class Age {
+    public int age(int age) {
+        int answer = 0;
+        if (0 <= age && age <= 120) {
+            answer = (2022 - age + 1);
+        }
+        return answer;
+    }
+}
+```
+
+</details>
+
 
 # 코드카타 SQL
 
