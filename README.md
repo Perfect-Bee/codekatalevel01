@@ -126,6 +126,30 @@ class Age {
 
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 5. 숫자 비교하기  </summary>
+    
+## 코드카타 알고리즘 5. 숫자 비교하기 
+
+- 두 수의 범위가 0 ~ 10,000이고, 서로 같으면 1, 다르면 -1이 나온다.
+- 예) num1 = 2, num2 = 3 : -1 | num1 = 9, num2 = 9 : 1
+
+```java
+class ComparingNumbers {
+    public int comparingnumbers(int num1, int num2) {
+        int answer = 0;
+        if (0 <= num1 && num2 <= 10000) {
+            if (num1 == num2) {
+                answer = 1;
+            } answer = -1;
+        }
+        return answer;
+    }
+}
+```
+
+
+</details>
 
 # 코드카타 SQL
 
