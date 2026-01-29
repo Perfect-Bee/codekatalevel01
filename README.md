@@ -170,3 +170,31 @@ ORDER BY ANIMAL_ID DESC
 - 보여주는 것이 ORDER
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 3. 중복 제거 </summary>
+
+## 코드카타 SQL 3. 중복 제거
+
+- 모든 동물의 이름에서 NULL과 중복되는 이름을 제거하라
+- 예) NULL. *sam, *sam, *satter 의 이름 개수는 2개
+
+### 답
+```sql
+SELECT COUNT(DISTINCT NAME) AS COUNT
+FROM ANIMAL_INS
+WHERE NAME IS NOT NULL
+```
+
+### 후기
+- 개수 찾기 : SELECT COUNT(*) AS COUNT
+   - 중복없이(DISTINCT) 이름 골라서 개수 체크
+
+- FROM __ : __에서 찾기
+   - ANIMAL_INS(전체)에서 찾기
+ 
+- WHERE __ IS NOT NULL : __찾기
+  - 이름이 NULL인 건 제외
+
+
+</details>
