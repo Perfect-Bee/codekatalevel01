@@ -154,6 +154,8 @@ class ComparingNumbers {
 
 ## 코드카타 알고리즘 6. 두 수의 합
 
+<details>
+<summary> 코드카타 알고리즘 6. 두 수의 합 </summary>
 - 두 수의 범위가 -50,000 ~ 50000이고, 서로 합하라.
 - 예) num1이 1이고 mum2가 5이면 합은 6 | num1이 -400이고 num2가 280이면 합은 -120
 
@@ -169,6 +171,7 @@ class Add {
     }
 }
 ```
+</details>
 
 # 코드카타 SQL
 
