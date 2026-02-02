@@ -246,3 +246,23 @@ WHERE NAME IS NOT NULL
 
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 4. 동물의 아이디와 이름 정렬 </summary>
+
+## 코드카타 SQL 4. 동물의 아이디와 이름 정렬
+
+- 모든 동물의 아이디와 이름을 동물의 아이디 순으로 오름차순 정렬하라.
+  
+### 답
+```sql
+SELECT ANIMAL_ID, NAME
+FROM ANIMAL_INS
+ORDER BY ANIMAL_ID ASC
+```
+
+### 후기
+- 슬슬 익숙해진다.
+- 역순 정렬과 동일한 내용
+
+</details>
