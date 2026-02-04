@@ -206,6 +206,21 @@ class Division {
 # 코드카타 SQL
 
 <details>
+<summary> SQL 기본 구조 </summary>
+    
+```sql
+SELECT      컬럼            -- 무엇을 보여줄지
+FROM        테이블           -- 어디서 가져올지
+WHERE       조건            -- (선택) 어떤 것만 고를지
+GROUP BY    기준            -- (선택) 묶을 때
+HAVING      그룹조건        -- (선택) 묶은 후 조건
+ORDER BY    정렬기준        -- (선택) 정렬
+```
+
+</details>
+
+
+<details>
 <summary> 코드카타 SQL 1. 이름있는 동물 이름 찾기 </summary>
 
 ## 코드카타 SQL 1. 이름있는 동물 이름 찾기
@@ -292,5 +307,24 @@ ORDER BY ANIMAL_ID ASC
 ### 후기
 - 슬슬 익숙해진다.
 - 역순 정렬과 동일한 내용
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 5. 동물 수 구하기 </summary>
+
+## 코드카타 SQL 5. 동물 수 구하기
+
+- 동물의 수를 구하라.
+  
+### 답
+```sql
+SELECT COUNT(*)
+FROM ANIMAL_INS
+```
+
+### 후기
+- 저번에 어떻게 했는지 기억이 안나서 쓰다 말았는데, 됐다. ORDER이 없어도 됐다.
+- SELET : 찾을 것. 조건 | FROM : 찾는 범위 | 세 번째 줄 : 수행 방법 | 이라고 생각 했는데, 필터링(조건) 이었다.
 
 </details>
