@@ -175,6 +175,34 @@ class Add {
 ```
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 7. 두 수의 나눗셈 </summary>
+
+## 코드카타 알고리즘 7. 두 수의 나눗셈
+
+- 두 수의 범위가 0 초과 100 이하이고, 서로 나눈 값에 1000을 곱하여 실수값만 출력하라.
+- 예) num1이 1이고 num2가 16이면 0.0625에 1000을 곱해 62가 출력되게 한다.
+
+```java
+class Division {
+    public int division(int num1, int num2) {
+        int answer = 0;
+        if (0 < num1 && num1 <= 100 && 0 < num2 && num2 <= 100) {
+            answer = (int)((double)num1 / num2 * 1000);
+        }
+        return answer;
+    }
+}
+```
+
+## 후기
+- 해당 코드는 int 형식의 num1을 double로 실수화 시킨 뒤 num2로 나누고, 그 값에 1000을 곱한 다음 다시 정수화시켜 소숫점을 잘라내는 방식을 사용하였다.
+- 그런데, 다른 사람의 코드를 다시 살펴보니 처음부터 num1에 1000을 곱해서 num2로 나누면 double 필요 없이 가능하다는 것을 알게 됐다.
+- 간단한 것을 눈치채지 못했다는 것이 당혹스러우면서 앞으로 더 간단한 방법으로 생각하도록 노력해보자.
+
+
+</details>
+
 # 코드카타 SQL
 
 <details>
