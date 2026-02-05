@@ -203,6 +203,42 @@ class Division {
 
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 8. 각도기 </summary>
+
+## 코드카타 알고리즘 8. 각도기
+- 각도는 0 이상 ~ 180 이하
+- 예각은 0 초과 ~ 90 미만
+- 직각은 90
+- 둔각은 90 초과 ~ 180 미만
+- 평각은 180
+
+```java
+public class Angle {
+    public int angle (int angle) {
+        int answer = 0;
+        // 범위가 0 ~ 180
+        if (angle < 90) {           // 예각
+            answer = 1;
+        } else if (angle == 90) {   // 직각
+            answer = 2;
+        } else if (angle < 180) {   // 둔각
+            answer = 3;
+        } else {                    // 평각
+            answer = 4;
+        }
+        return answer;
+    }
+}
+```
+
+## 후기
+- 작성한 뒤에야 삼항연산자가 기억났다.
+- angle < 90 ? 1 : angle == 90 ? 2 : angle < 180 ? 3 : 4; 하면 한줄컷 가능
+
+
+</details>
+
 # 코드카타 SQL
 
 <details>
