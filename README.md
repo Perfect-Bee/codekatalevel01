@@ -29,7 +29,7 @@ class Subtraction {
 
 ### 틀렸던 점
 ```java
-int answer = 0 선언한 후 
+int answer = 0; 선언한 후 
 int answer = num1 - num2 ; 을 했다.
 ```
 ### 주의할 점
@@ -238,6 +238,34 @@ public class Angle {
 
 
 </details>
+
+<details>
+<summary> 코드카타 알고리즘 9. 짝수의 합 </summary>
+
+## 코드카타 알고리즘 9. 짝수의 합
+- 범위가 0부터 1000인 n에 대해 n이하의 모든 짝수의 합을 구하라
+- 예) n이 10이면 2 + 4 + 6 + 8 + 10 = 30
+```java
+
+class EvenAdd {
+    public int evenadd(int n) {
+        int answer = 0;
+        if (n >= 0 && n <= 1000) {
+            for (int i = 2; i <= n; i += 2) {
+                answer += i;
+            }
+        }
+        return answer;
+    }
+}
+```
+
+## 후기
+- for문 좋아...
+
+
+</details>
+
 
 # 코드카타 SQL
 
