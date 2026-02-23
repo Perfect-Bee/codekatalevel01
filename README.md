@@ -263,9 +263,67 @@ class EvenAdd {
 ## 후기
 - for문 좋아...
 
-
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 10. 배열의 평균값 </summary>
+
+## 코드카타 알고리즘 10. 배열의 평균값
+- 배열의 원소의 범위는 0부터 1000
+- 배열의 길이는 1부터 100
+- 배열의 원소의 평균값을 구하라.
+
+```java
+
+public class ArrayAdd {
+    public double arrayadd(int[] numbers) {
+        double answer = 0;
+
+        // 배열의 원소 조건 0 ~ 1000
+        for (int number : numbers) {
+            if (number >= 0 && number <= 1000)
+
+                // 배열의 길이 조건 1 ~ 100
+                if (numbers.length >= 1 && numbers.length <= 100) {
+                    answer += number;
+                }
+        }
+        return answer / numbers.length;
+    }
+}
+```
+
+## 후기
+- 배열의 길이 : 배열.length
+- int 나누기 double은 실수로 나옴
+- 사용하진 않았지만 소수점 단위 출력 : System.out.printf("%._출력하고싶은소수점자릿수_f", value);
+### 향상된 for문
+```java
+for (타입 변수명 : 배열또는컬렉션) {
+    // 반복 실행
+}
+```
+예) 배열 numbers의 원소 1, 2, 3, 4에 대해 나열하라.
+```java
+int[] numbers = {1, 2, 3, 4};
+
+for (int num : numbers) {
+    System.out.println(num);
+}
+```
+결과 : numbers에서 num에 하나씩 꺼내서 넣음
+```java
+for (int i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+}
+// 은
+for (int num : numbers) {
+    sum += num;
+}
+// 이다.
+```
+
+</details>
 
 # 코드카타 SQL
 
