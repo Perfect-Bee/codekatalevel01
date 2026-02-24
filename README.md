@@ -338,6 +338,11 @@ GROUP BY    기준            -- (선택) 묶을 때
 HAVING      그룹조건        -- (선택) 묶은 후 조건
 ORDER BY    정렬기준        -- (선택) 정렬
 ```
+- SELECT에서 여러 컬럼을 다루는 경우 쉼표[ , ] 붙이기
+   - 예) SELECT NAME, COUNT(*) : 어떤 그룹(NAME)인지, 그 그룹의 크기(COUNT(*))가 얼마인지
+- 여러 개의 쿼리를 다루는 경우 세미콜론(;)을 붙여야 한다고 함.
+
+
 
 </details>
 
@@ -449,4 +454,63 @@ FROM ANIMAL_INS
 - 저번에 어떻게 했는지 기억이 안나서 쓰다 말았는데, 됐다. ORDER이 없어도 됐다.
 - SELET : 찾을 것. 조건 | FROM : 찾는 범위 | 세 번째 줄 : 수행 방법 | 이라고 생각 했는데, 필터링(조건) 이었다.
 
+</details>
+
+
+<details>
+<summary> 코드카타 SQL 6. 동명 동물 수 구하기 </summary>
+
+## 코드카타 SQL 6. 동명 동물 수 구하기
+
+- 같은 이름의 동물의 수를 구하라.
+  
+### 답
+```sql
+SELECT COUNT(*)
+FROM ANIMAL_INS
+```
+
+### 풀이과정
+
+```sql
+-- 어떤 것 : 이름 기준 개수. NAME의 개수를 NAMEC라 하자.
+SELECT NAME COUNT(*) AS NAMEC
+-- 어디에서 : 전체에서
+FROM ANIMAL_INS
+-- 조건 : 이름 있는
+WHERE NAME IS NOT NULL
+-- 기준 : 이름 별로 묶기
+GROUP BY NAME
+-- 그룹 조건 : 2개 이상
+HAVING NAMEC >= 2
+-- 정렬 : 이름
+ORDER BY NAME
+```
+- 이 경우 오류코드로 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(*) AS NAMEC
+가 나온다.
+- 구문 오류이니 MySQL을 찾으라 한다.
+
+### 해결
+```sql
+-- 어떤 것 : 이름 기준 개수. NAME의 개수를 NAMEC라 하자.
+SELECT NAME, COUNT(*) AS NAMEC
+-- 어디에서 : 전체에서
+FROM ANIMAL_INS
+-- 조건 : 이름 있는
+WHERE NAME IS NOT NULL
+-- 기준 : 이름 별로 묶기
+GROUP BY NAME
+-- 그룹 조건 : 2개 이상
+HAVING NAMEC >= 2
+-- 정렬 : 이름
+ORDER BY NAME
+```
+- SELECE 변수명, COUNT(*) AS 통칭할변수명
+- 여기에서 변수명 앞에 [ , ] 찍어야 한다.
+- 어떤 그룹(NAME)인지, 그 그룹의 크기(COUNT(*))가 얼마인지. = 컬럼 2개.
+- 컬럼끼리는 [ , ] 으로 연결
+
+### 추가사항
+- ChartGPT한테 점검 받으니 SELECT NAME, COUNT(*) AS NAMEC에서 NAMEC는 별칭이므로 이걸로 조건문을 사용하는 건 좋지 않다고 한다.
+- 찾다보니 여러 개의 쿼리를 다루는 경우 세미콜론(;)을 붙여야 한다고 함.
 </details>
