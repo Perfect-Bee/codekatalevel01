@@ -322,6 +322,7 @@ for (int num : numbers) {
 }
 // 이다.
 ```
+</details>
 
 <details>
 <summary> 코드카타 알고리즘 11. 짝수 홀수 판별 </summary>
