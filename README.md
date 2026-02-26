@@ -323,7 +323,30 @@ for (int num : numbers) {
 // 이다.
 ```
 
+<details>
+<summary> 코드카타 알고리즘 11. 짝수 홀수 판별 </summary>
+
+## 코드카타 알고리즘 11. 짝수 홀수 판별
+- num이 짝수인지 홀수인지 판별한다.
+```java
+public class EvenOddDiscrimination {
+    public String evenodddiscrimination(int num) {
+        String answer = "";
+        if ((num % 2) == 0) {
+            answer = "Even";
+        } else {
+            answer = "Odd";
+        }
+        return answer;
+    }
+}
+```
+
+### 후기
+- / 는 나머지. %은 몫
+- Even은 짝수. Odd는 홀수 ( 반대 아님! )
 </details>
+
 
 # 코드카타 SQL
 
