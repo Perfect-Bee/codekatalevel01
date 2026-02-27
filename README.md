@@ -349,6 +349,37 @@ public class EvenOddDiscrimination {
 </details>
 
 
+<details>
+<summary> 코드카타 알고리즘 12. 배열 평균 구하기 </summary>
+
+## 코드카타 알고리즘 12. 배열 평균 구하기
+- int[] arr의 원소는 -10000에서 10000이다.
+- 배열의 길이는 1이상 100 이하이다.
+- 
+```java
+public class ArrayAverage {
+    public double arrayaverage(int[] arr) {
+        double answer = 0;
+        if (arr.length >= 1 && arr.length <= 100) {
+            for (int num : arr) {
+                if (num >= -10000 && num <= 10000) {
+                    answer += num;
+                }
+            }
+        }
+        return answer / arr.length;
+    }
+}
+
+```
+
+### 후기
+- 배열 길이는 .length
+- 배열 원소는 int num으로 분리해서. 반복은 for으로
+- num으로 원소를 옮긴 뒤에 원소 값 범위 지정하자.
+
+</details>
+
 # 코드카타 SQL
 
 <details>
