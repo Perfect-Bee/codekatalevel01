@@ -384,7 +384,9 @@ public class ArrayAverage {
 
 <details>
 <summary> SQL 기본 구조 </summary>
-    
+
+## 전체 구조
+
 ```sql
 SELECT      컬럼            -- 무엇을 보여줄지
 FROM        테이블           -- 어디서 가져올지
@@ -397,6 +399,10 @@ ORDER BY    정렬기준        -- (선택) 정렬
    - 예) SELECT NAME, COUNT(*) : 어떤 그룹(NAME)인지, 그 그룹의 크기(COUNT(*))가 얼마인지
 - 여러 개의 쿼리를 다루는 경우 세미콜론(;)을 붙여야 한다고 함.
 
+### WHERE의 구조
+- IS 는 NULL 비교용 연산자이다.
+- 따라서 해당 값의 문자열을 비교하고 싶다면 [비교하고자 하는 것 ] = '문자열'으로 하자
+   - 예) WHERE ANIMAL_ID = 'Sick'
 
 
 </details>
@@ -518,12 +524,6 @@ FROM ANIMAL_INS
 ## 코드카타 SQL 6. 동명 동물 수 구하기
 
 - 같은 이름의 동물의 수를 구하라.
-  
-### 답
-```sql
-SELECT COUNT(*)
-FROM ANIMAL_INS
-```
 
 ### 풀이과정
 
@@ -568,4 +568,48 @@ ORDER BY NAME
 ### 추가사항
 - ChartGPT한테 점검 받으니 SELECT NAME, COUNT(*) AS NAMEC에서 NAMEC는 별칭이므로 이걸로 조건문을 사용하는 건 좋지 않다고 한다.
 - 찾다보니 여러 개의 쿼리를 다루는 경우 세미콜론(;)을 붙여야 한다고 함.
+</details>
+
+<details>
+<summary> 코드카타 SQL 7. 아픈 동물 찾기 </summary>
+
+## 코드카타 SQL 7. 아픈 동물 찾기
+
+- 아픈 동물1의 아이디와 이름을 조회하는 SQL 문을 작성해주세요. 
+- 이때 결과는 아이디 순으로 조회해주세요.
+
+### 풀이과정
+
+```sql
+-- 출력 값이 동물 ID와 이름
+SELECT ANIMAL_ID, NAME
+-- 동물 전체에서 찾기
+FROM ANIMAL_INS
+-- 조건 : 내원 상태가 아픔 (Sick)
+WHERE INTAKE_CONDITION IS Sick
+-- 정렬 순서는 ID
+ORDER BY ANIMAL_ID
+```
+#### 틀린 이유 해석
+- You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sick 
+- ORDER BY ANIMAL_ID' at line 4
+- 구문오류라고 함. 그러면, 뭐라고 작성해야 할까?
+   - 
+### 해결
+```sql
+-- 출력 값이 동물 ID와 이름
+SELECT ANIMAL_ID, NAME
+-- 동물 전체에서 찾기
+FROM ANIMAL_INS
+-- 조건 : 내원 상태가 아픔 (Sick)
+WHERE INTAKE_CONDITION = 'Sick'
+-- 정렬 순서는 ID
+ORDER BY ANIMAL_ID
+
+```
+
+
+### 추가사항
+
+
 </details>
