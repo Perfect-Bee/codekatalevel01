@@ -688,7 +688,7 @@ ORDER BY ANIMAL_ID
 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sick 
 - ORDER BY ANIMAL_ID' at line 4
 - 구문오류라고 함. 그러면, 뭐라고 작성해야 할까?
-   - 
+
 ### 해결
 ```sql
 -- 출력 값이 동물 ID와 이름
@@ -705,5 +705,47 @@ ORDER BY ANIMAL_ID
 
 ### 추가사항
 
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 8. 상위 n개 레코드 </summary>
+
+## 코드카타 SQL 8. 상위 n개 레코드
+
+- ANIMAL_INS 테이블은 동물 보호소에 들어온 동물의 정보를 담은 테이블입니다. 
+- DATETIME 보호 시작일
+- 가장 먼저 보호소에 들어온 동물을 구하는 방식은?
+
+### 해결
+```sql
+-- 동물의 이름을 찾아야 한다.
+SELECT NAME
+-- 전체 보호소에서
+FROM ANIMAL_INS
+-- 시간순으로 오래된(먼저 들어온) 순으로 찾기
+ORDER BY DATETIME ASC
+-- 결과값 개수 제한 : ASC(오름차순)로 1개만 출력 = 먼저 들어온 것만 출력
+LIMIT 1;
+```
+
+### 알게 된 것
+- LIMIT 1;은 개수를 1개로 제한한다는 뜻.
+- DATETIME을 ASC로 정렬하게 했으니 첫 번째는 가장 먼저 들어온 것
+
+### 추가사항
+- LIMIT 안쓰고 만들기
+- 서브쿼리 : 쿼리 안에 들어있는 쿼리를 사용한 결과값
+```sql
+-- 동물의 이름을 찾아야 한다.
+SELECT NAME
+-- 전체 보호소에서
+FROM ANIMAL_INS
+-- 조건 = (DATETIME의 최소값을 찾아라. 전체 동물군에서)
+WHERE DATETIME = (
+    SELECT MIN(DATETIME)
+    FROM ANIMAL_INS
+);
+```
 
 </details>
