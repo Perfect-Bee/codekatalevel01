@@ -749,3 +749,40 @@ WHERE DATETIME = (
 ```
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 9. 최솟값 구하기 </summary>
+
+## 코드카타 SQL 9. 최솟값 구하기
+- 회원 정보를 담은 USER_INFO 테이블
+- USER_ID, AGE, JOINED는 각각 회원 ID, 나이, 가입일
+- USER_INFO 테이블에서 2021년에 가입한 회원 중 나이가 20세 이상 29세 이하인 회원이 몇 명인지 출력하는 SQL문을 작성해주세요.
+- 예) USER_ID가 3인 인원만 21년에 가입한 인원 3명 = USERS 3
+### 해결
+```sql
+SELECT COUNT(*) AS USERS
+FROM USER_INFO
+WHERE YEAR(JOINED) = 2021 AND AGE BETWEEN 20 AND 29;
+```
+
+### 주의사항
+- 저번에도 언급된 것 : SELECT __ AS [이렇게 부를거야] 
+  - USERS는 진짜 USERS가 아니라 해당 기간에 있는 유저 테이블(USER_INFO)의 인원(COUNT(*))을 USERS라고 출력할거야. 라는 의미
+- JOINED에서 뽑아낸 가입일은 '202x-xx-xx'의 DATETIME이다.
+- 따라서 연-월-일 구분할 거 아니면 뽑아내고자 하는 것을 명시(YEAR(__))해야 한다.
+- 아닌 경우의 코드
+```sql
+SELECT COUNT(*) AS USERS
+FROM USER_INFO
+-- 2021년에 가입한 회원 수
+WHERE JOINED BETWEEN '2021-01-01' AND '2021-12-31'
+-- 중 20세 이상
+  AND AGE >= 20
+-- 29세 이하
+  AND AGE <= 29;
+```
+
+### 알게 된 것
+- BETWEEN : BETWEEN A AND B = A부터 B까지 범위를 나타냄
+
+</details>
