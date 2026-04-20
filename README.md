@@ -474,6 +474,34 @@ public class SumOfDivisor {
 
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 15. 나머지 1이 되는 수 찾기 </summary>
+
+## 코드카타 알고리즘 15. 나머지 1이 되는 수 찾기
+- 3 ≤ n ≤ 1,000,000일 때, n을 x로 나눈 나머지가 1인 가장 작은 자연수 x를 리턴하라.
+- 예) 10 -> 3으로 나눴을 때 나머지가 1, 12에서 11만이 나눴을 때 나머지가 1 -> 11
+```java
+public class FindDivisorWithRemainderOne {
+    public int findDivisorWithRemainderOne(int n) {
+        int answer = 0;
+        for (int x = 3; x <= n; x++) {
+            if (n % x == 1) {
+                return x;
+            }
+        }
+        return answer;
+    }
+}
+
+```
+### 후기
+- 아무 생각 없이 n % 3 == 1이라고 했는데, 이러면 x가 3으로 고정되니 안된다.
+- 거기에 가장 작은 x를 찾는다?
+- 그러면 가장 작은 수부터 차례대로 측정하면 된다.
+
+</details>
+
+
 # 코드카타 SQL
 
 <details>
