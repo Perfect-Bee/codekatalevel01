@@ -505,7 +505,7 @@ public class FindDivisorWithRemainderOne {
 <summary> 코드카타 알고리즘 16. x만큼 간격이 있는 n개의 숫자 </summary>
 
 ## 코드카타 알고리즘  16. x만큼 간격이 있는 n개의 숫자 
-- -10000000 <= x <= 10000000 이하인 정수입니다.
+- -10,000,000 <= x <= 10,000,000 이하인 정수입니다.
 - n은 1000 이하인 자연수입니다.
 - 정수 x와 자연수 n을 받아 x부터 시작해 x씩 증가해 n개를 지니는 리스트를 리턴해야 한다.
 - 
@@ -526,6 +526,21 @@ public class SequenceWithStepX {
 ### 후기
 - for문에서 i를 1씩 증가하고, n에 도달하면 반환. 
 - x씩 증가해야하니 x만큼 곱하면 된다.
+
+### 추가 수정사항
+public class SequenceWithStepX {
+    public long[] SequenceWithStepX(int x, int n) {
+        long[] answer = new long[n];
+        for (int i = 0; i < n; i++) {
+            answer[i] = (long) x * (i + 1);
+        }
+
+        return answer;
+    }
+}
+### 추가 수정사항 이유
+- 테스트 2회째에 에러 발생
+- x의 범위는 천만, n의 범위는 1천. 최대 100억의 개수가 나오는데, int(-21억 ~ 21억)는 범위가 모자라다.
 
 </details>
 
