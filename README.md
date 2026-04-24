@@ -528,7 +528,7 @@ public class SequenceWithStepX {
 - x씩 증가해야하니 x만큼 곱하면 된다.
 
 ### 추가 수정사항
-```
+```java
 public class SequenceWithStepX {
     public long[] SequenceWithStepX(int x, int n) {
         long[] answer = new long[n];
