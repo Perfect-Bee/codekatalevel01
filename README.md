@@ -546,6 +546,68 @@ public class SequenceWithStepX {
 
 </details>
 
+<details>
+<summary> 코드카타 알고리즘 17. 자연수 뒤집어 배열로 만들기 </summary>
+
+## 코드카타 알고리즘 17. 자연수 뒤집어 배열로 만들기
+- n은 10,000,000,000 이하인 자연수입니다.
+- 자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해야 한다.
+- 예: n = 12345 → [5,4,3,2,1]
+
+```java
+public class ReverseNumberToArray {
+    public int[] reverseNumberToArray(long n) {
+        // n을 문자열로 변환
+        String str = Long.toString(n);
+
+        // 결과 배열 생성
+        int[] answer = new int[str.length()];
+
+        // 뒤에서부터 하나씩 꺼내서 배열에 저장
+        int index = 0;
+        for (int i = str.length() - 1; i >= 0; i--) {
+            answer[index++] = str.charAt(i) - '0';
+        }
+        return answer;
+    }
+}
+```
+
+### 후기
+- 숫자를 문자열로 변환한 뒤 뒤에서부터 하나씩 읽어서 배열에 저장
+- char → int 변환 시 `'0'`을 빼주는 방식 사용
+- 배열 크기를 미리 지정해서 처리 (자바 배열 특성상 필수)
+
+### 다른 사람 코드 : 스트림
+```java
+import java.util.stream.IntStream;
+
+class Solution {
+    public int[] solution(long n) {
+        return new StringBuilder()
+                .append(n)
+                .reverse()
+                .chars()
+                .map(Character::getNumericValue)
+                .toArray();
+    }
+}
+```
+
+### 설명
+- new StringBuilder().append(n)
+   - 숫자를 문자열처럼 다루기
+- .reverse()
+  - 뒤집기
+- .chars()
+  - 각 문자를 int 스트림으로 변환
+- .map(Character::getNumericValue)
+  - '5' → 5로 변환
+- .toArray()
+  - int[]로 변환
+
+</details>
+
 # 코드카타 SQL
 
 <details>
