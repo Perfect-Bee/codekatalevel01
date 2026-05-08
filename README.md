@@ -883,7 +883,6 @@ WHERE DATETIME = (
 ```
 
 </details>
-
 <details>
 <summary> 코드카타 SQL 9. 최솟값 구하기 </summary>
 
@@ -918,5 +917,35 @@ WHERE JOINED BETWEEN '2021-01-01' AND '2021-12-31'
 
 ### 알게 된 것
 - BETWEEN : BETWEEN A AND B = A부터 B까지 범위를 나타냄
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 10. 어린 동물 찾기 </summary>
+
+## 코드카타 SQL 10. 어린 동물 찾기
+- 보호소 동물 정보를 담은 ANIMAL_INS 테이블
+- ANIMAL_ID, ANIMAL_TYPE, DATETIME, INTAKE_CONDITION, NAME, SEX_UPON_INTAKE는 
+- 각각 동물의 아이디, 생물 종, 보호 시작일, 보호 시작 시 상태, 이름, 성별 및 중성화 여부
+   - INTAKE_CONDITION : Normal, Sick, Aged
+- 동물 보호소에 들어온 동물 중 젊은 동물1의 아이디와 이름을 조회하는 SQL 문을 작성
+- **이때 결과는 아이디 순으로 조회**
+
+### 해결
+```sql
+-- 동물 ID와 이름
+SELECT ANIMAL_ID, NAME
+-- 전체
+FROM ANIMAL_INS
+-- 늙지 않음 = 어림
+WHERE INTAKE_CONDITION != 'Aged'
+-- 동물 ID 조회
+ORDER BY ANIMAL_ID;
+```
+
+### 주의사항
+- 상태값이 Aged가 늙음이다. 따라서 어린 동물은 Aged가 아닌 것
+   - 잘못 본 줄 알았다. 도대체 어린 동물 분류군이 어디있는지 한참 찾았다.
+- ANIMAL_ID는 PK값이고, NAME은 중복 가능하기에 ORDER BY에 의미 없다.(추가해도 되긴 함)
 
 </details>

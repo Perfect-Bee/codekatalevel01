@@ -1,0 +1,8 @@
+-- 동물 ID와 이름
+SELECT ANIMAL_ID, NAME
+-- 전체
+FROM ANIMAL_INS
+-- 늙지 않음 = 젊음
+WHERE INTAKE_CONDITION != 'Aged'
+-- 동물 ID 조회
+ORDER BY ANIMAL_ID;
