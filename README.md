@@ -949,3 +949,27 @@ ORDER BY ANIMAL_ID;
 - ANIMAL_ID는 PK값이고, NAME은 중복 가능하기에 ORDER BY에 의미 없다.(추가해도 되긴 함)
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 11. 여러 기준으로 정렬하기 </summary>
+
+## 코드카타 SQL 11. 여러 기준으로 정렬하기
+- ANIMAL_INS은 동물 보호소에 들어온 동물의 정보를 담은 테이블
+- ANIMAL_ID, DATETIME, NAME는 각각 동물의 아이디, 보호 시작일, 이름
+- 동물 보호소에 들어온 모든 동물의 아이디와 이름, 보호 시작일을 이름 순으로 조회하는 SQL문을 작성하자
+
+### 해결
+```sql
+-- 동물의 아이디, 이름, 보호 시작일
+SELECT ANIMAL_ID, NAME, DATETIME
+-- 동물 보호소에서
+FROM ANIMAL_INS
+-- 이름은 올림차순 : A → Z,  날짜는 내림차순 : 과거 → 현재
+ORDER BY NAME ASC, DATETIME DESC;
+```
+
+### 주의사항
+- 이름은 올림차순으로 작성해야 ABCD 순으로 나아간다.
+- 날짜는 들어온 순서대로 세야 하기에 오래된 순. 즉 내림차순으로 진행한다. (과거 → 현재)
+
+</details>
