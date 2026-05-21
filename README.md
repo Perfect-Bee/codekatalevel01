@@ -1015,6 +1015,6 @@ ORDER BY NAME;
 - 내부 문자열이 오락가락할 수 있으므로 전부 소문자로 바꾸는 건 LOWER()이다.
 - %은 아무 문자나 0개 이상을 의미한다.
   - %el%은 el 앞뒤로 아무것도 없든, 하나라도 있든 상관없다.
-    - D_el_l이든 Dani_el_이든 _El_la든
+  - D_el_l이든 Dani_el_이든 _El_la든
 
 </details>
