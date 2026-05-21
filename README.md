@@ -637,6 +637,21 @@ ORDER BY    정렬기준        -- (선택) 정렬
 
 
 <details>
+<summary> SQL 함수 </summary>
+
+## 함수 설명
+
+```sql
+LOWER()     : 문자열을 소문자로 바꾸는 함수
+```
+
+### LOWER() 예시
+- LOWER(NAME) : 문자열을 모두 소문자로 바꿈 : Dog -> dog, Cat -> cat
+  - 서로 다른 문자열(어떤 건 Dog, 어떤 건 dog)을 하나로 통일해준다.
+
+</details>
+
+<details>
 <summary> 코드카타 SQL 1. 이름있는 동물 이름 찾기 </summary>
 
 ## 코드카타 SQL 1. 이름있는 동물 이름 찾기
@@ -971,5 +986,35 @@ ORDER BY NAME ASC, DATETIME DESC;
 ### 주의사항
 - 이름은 올림차순으로 작성해야 ABCD 순으로 나아간다.
 - 날짜는 들어온 순서대로 세야 하기에 오래된 순. 즉 내림차순으로 진행한다. (과거 → 현재)
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 12. 이름에 el이 들어간 동물 찾기 </summary>
+
+## 코드카타 SQL 12. 이름에 el이 들어간 동물 찾기
+- ANIMAL_INS은 동물 보호소에 들어온 동물의 정보를 담은 테이블
+- ANIMAL_ID, NAME는 각각 동물의 아이디, 이름
+- 키우는 개의 이름 중 "EL"이 들어갈 때, 개의 아이디와 이름을 조회하는 SQL문을 작성하자
+
+### 해결
+```sql
+-- 동물 이름을 찾기
+SELECT ANIMAL_ID, NAME
+-- 전체에서
+FROM ANIMAL_INS
+-- 조건 : 타입 개와 이름 el을
+WHERE ANIMAL_TYPE = 'Dog'
+  AND LOWER(NAME) LIKE '%el%'
+-- 정렬 기준은 동물 이름
+ORDER BY NAME;
+```
+
+### 주의사항
+- 컬럼값 찾을 땐 '찾고자하는컬럼값' 사이
+- 내부 문자열이 오락가락할 수 있으므로 전부 소문자로 바꾸는 건 LOWER()이다.
+- %은 아무 문자나 0개 이상을 의미한다.
+  - %el%은 el 앞뒤로 아무것도 없든, 하나라도 있든 상관없다.
+    - D_el_l이든 Dani_el_이든 _El_la든
 
 </details>
