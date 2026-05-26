@@ -608,6 +608,73 @@ class Solution {
 
 </details>
 
+
+<details>
+<summary> 코드카타 알고리즘 18. 문자열을 정수로 바꾸기 </summary>
+
+## 코드카타 알고리즘 18. 문자열을 정수로 바꾸기
+- 문자열 s를 숫자로 변환한 결과를 반환한 함수를 만들어라
+   - s의 길이는 1 이상 5이하이다.
+   - s의 맨앞에는 부호(+, -)가 올 수 있다.
+   - s는 부호와 숫자로만 이루어져있다.
+   - s는 "0"으로 시작하지 않는다.
+- 예) str이 "1234"이면 1234를 반환하고, "-1234"이면 -1234 반환 (+와 - 구분)
+
+```java
+public class StringToInteger {
+    public int stringToInteger(String str) {
+        // 부호 종류(양수음수 구분 : 1은 +, -1은 -)
+        int sign = 1;
+        // 숫자 읽는 위치(자릿수 출력에 쓰임)
+        int index = 0;
+        // 결과값 : result * sign으로 +와 - 붙임
+        int result = 0;
+
+        // 첫 번째 문자열(charAt(0))이 -라면
+        if (str.charAt(0) == '-') {
+            sign = -1;
+               index = 1; // 첫 번째 문자열(charAt(0))이 부호이므로 두 번째(charAt(1))부터 체크
+        // 첫 번째 문자열(charAt(0))이 +라면
+        } else if (str.charAt(0) == '+') {
+            index = 1; // 첫 번째 문자열(charAt(0))이 부호이므로 두 번째(charAt(1))부터 체크
+        }
+        // 첫 번째 문자열이 숫자라면 = + 생략하면 기본값인 1
+
+        // 자릿수 출력 : 1234이면 1 -> 0 * 10
+        // 1234의 1 -> 0 * 10 + 1 = 1
+        // 1234의 2 -> 1 * 10 + 2 = 12
+        // 1234의 3 -> 12 * 10 + 3 = 123
+        // 1234의 4 -> 123 * 10 + 4 = 1234
+        // result = 1234
+        for (int i = index; i < str.length(); i++) {
+            result = result * 10 + (str.charAt(i) - '0');
+        }
+
+        return result * sign;
+    }
+}
+```
+
+### 후기
+- 문자열로 분리한 다음 +인 경우는 1, -인 경우는 -1로 작성 후 길이만큼 반복한다.
+- 막상 구현하려고 보니 조금 복잡했다.
+
+### 다른 풀이
+```java
+public class StringToInteger {
+    public int stringToInteger(String s) {
+        return Integer.parseInt(s);
+    }
+}
+```
+### 다른 풀이 후기
+- Integer = 정수
+- Integer.parseInt(s) = 문자열 s를 숫자(int)로 바꿔준다.
+   - Integer.parseInt("-1234") 이라면 1234, -1234, +1234를 구분한다.
+   - 역시 모르면 검색해보자
+
+</details>
+
 # 코드카타 SQL
 
 <details>
