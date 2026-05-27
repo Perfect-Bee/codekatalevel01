@@ -710,12 +710,35 @@ ORDER BY    정렬기준        -- (선택) 정렬
 ## 함수 설명
 
 ```sql
+COUNT()     : 개수 세기
 LOWER()     : 문자열을 소문자로 바꾸는 함수
 ```
 
 ### LOWER() 예시
 - LOWER(NAME) : 문자열을 모두 소문자로 바꿈 : Dog -> dog, Cat -> cat
   - 서로 다른 문자열(어떤 건 Dog, 어떤 건 dog)을 하나로 통일해준다.
+
+### COUNT() 예시
+- COUNT(*) : 해당 SQL문에서 조건에 해당하는 것들의 개수를 의미한다. 
+  - 직접 () 안에 *(전부)가 아니라 원하는 컬럼을 넣어도 된다
+    - 예: 
+    ``` 
+    SELECT COUNT(*)       SELECT COUNT(AGE)
+    FROM USER_INFO    =   FROM USER_INFO
+    WHERE AGE             WHERE AGE
+    ```
+
+</details>
+
+<details>
+<summary> SQL 주의사항 </summary>
+
+## 주의사항
+
+```
+1. SQL에서 0은 false이다.
+   예) SQL 13. 나이 정보가 없는 회원 수 구하기에서 WHERE AGE IS NULL OR 0으로 하면 0을 false로 인식한다.
+```
 
 </details>
 
@@ -1084,5 +1107,30 @@ ORDER BY NAME;
 - %은 아무 문자나 0개 이상을 의미한다.
   - %el%은 el 앞뒤로 아무것도 없든, 하나라도 있든 상관없다.
   - D_el_l이든 Dani_el_이든 _El_la든
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 13. 나이 정보가 없는 회원 수 구하기 찾기 </summary>
+
+## 코드카타 SQL 13. 나이 정보가 없는 회원 수 구하기
+- USER_INFO는 의류 쇼핑몰에 가입한 회원 정보를 담은 테이블
+- USER_ID는 회원 정보, GENDER은 성별, AGE는 나이, JOINED는 가입일
+- AGE는 비어있는 경우 NULL이다.
+
+### 해결
+```sql
+-- 유저 수를 세자
+-- 이때, 조건에 맞는 것들을 USERS라고 명한다.
+SELECT COUNT(*) AS USERS
+-- 전체 유저에서
+FROM USER_INFO
+-- 조건 : AGE가 null인 것을
+WHERE AGE IS NULL;
+```
+
+### 주의사항
+- SQL에서 0은 항상 false
+- 0은 비어있는 것이 아니다. 따라서 0살도 입력된 걸로 취급
 
 </details>
