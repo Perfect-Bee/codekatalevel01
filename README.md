@@ -1134,3 +1134,38 @@ WHERE AGE IS NULL;
 - 0은 비어있는 것이 아니다. 따라서 0살도 입력된 걸로 취급
 
 </details>
+
+<details>
+<summary> 코드카타 SQL 14. 가장 비싼 상품 구하기 </summary>
+
+## 코드카타 SQL 14. 가장 비싼 상품 구하기
+- PRODUCT는 어느 의류 쇼핑몰에서 판매 중인 상품들의 정보를 담은 테이블
+- PRODUCT_ID는 상품 ID, PRODUCT_CODE는 상품 코드, PRICE는 가격
+- PRODUCT 테이블에서 판매중인 상품 중 가장 높은 판매가를 출력하는 SQL문을 작성하라
+  - 단, 이때 컬럼명은 MAX_PRICE로 지정하라
+### 해결
+```sql
+-- PRICE를 찾아라. 이때 컬럼명은 MAX_PRICE
+SELECT PRICE AS MAX_PRICE
+-- 상품(PRODUCT)에서
+FROM PRODUCT
+-- 가격을 내림차순으로 정렬해서
+ORDER BY PRICE DESC
+-- 첫 번째 = 가장 비싼 거
+LIMIT 1;
+```
+
+### 주의사항
+- DESC = 내림차순, ASC = 오름차순
+  - DESC는 가장 큰 것부터 하나씩 내려감
+- GPT 조언 : Oracle 기준이면 LIMIT 못쓰니까 `FETCH FIRST 1 ROWS ONLY`으로 한다 함
+
+### GPT의 다른 대답
+```sql
+SELECT MAX(PRICE) AS MAX_PRICE
+FROM PRODUCT;
+```
+### 해설
+- MAX() 함수를 사용하여 PRICE 중 가장 큰 것을 출력하는 것. 처음 찾을 때 부터 조건식을 쓰는 개념. 
+
+</details>
