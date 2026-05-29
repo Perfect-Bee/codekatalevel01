@@ -712,6 +712,7 @@ ORDER BY    정렬기준        -- (선택) 정렬
 ```sql
 COUNT()     : 개수 세기
 LOWER()     : 문자열을 소문자로 바꾸는 함수
+IFNULL()    : NULL인 경우(비어있는 경우) 대신 이 안에 있는 걸 보여줌
 ```
 
 ### LOWER() 예시
@@ -727,6 +728,10 @@ LOWER()     : 문자열을 소문자로 바꾸는 함수
     FROM USER_INFO    =   FROM USER_INFO
     WHERE AGE             WHERE AGE
     ```
+
+### IFNULL() 예시
+- IFNULL(검사할_값, NULL일때_대신_보여줄값)
+  - 예) IFNULL(NAME, 'No name') = NAME 컬럼의 값이 NULL이면 No name 출력
 
 </details>
 
@@ -1167,5 +1172,40 @@ FROM PRODUCT;
 ```
 ### 해설
 - MAX() 함수를 사용하여 PRICE 중 가장 큰 것을 출력하는 것. 처음 찾을 때 부터 조건식을 쓰는 개념. 
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 15. NULL 처리하기 </summary>
+
+## 코드카타 SQL 15. NULL 처리하기
+- ANIMAL_INS는 동물 보호소에 들어온 동물의 정보를 담은 테이블
+- ANIMAL_ID는 동물의 아이디, ANIMAL_TYPE는 생물 종, NAME은 동물의 이름, SEX_UPON_INTAKE는 성별 및 중성화 여부를 나타낸다.
+- 생물 종, 동물의 이름, 성별 및 중성화 여부를 아이디 순으로 조회하는 SQL문을 작성하라.
+  - 단, 이때 NULL은 사용자 편의성을 위하여 No name으로 표기한다.
+
+### 해결
+```sql
+-- 찾는 것 : 생물 종, 동물의 이름, 성별 및 중성화 여부
+SELECT ANIMAL_TYPE, IFNULL(NAME, 'No name') AS NAME, SEX_UPON_INTAKE
+-- 어디서? : 동물 보호소에 들어온 동물의 정보
+FROM ANIMAL_INS
+-- 정렬 : 동물의 아이디 순으로 정렬
+ORDER BY ANIMAL_ID
+
+```
+
+### 주의사항
+- IFNULL()은 MySQL의 함수 기능으로, 값이 NULL이 아니면 다른 값으로 바꿔서 보여주는 함수이다.
+  - IFNULL(검사할_값, NULL일때_대신_보여줄_값)
+  - IFNULL(NAME, 'No name') = 이름이 NULL이면 No name 출력
+
+### 추가 주의 사항
+- IFNULL(NAME, 'No name')으로 하면 컬럼명이 
+  - `ANIMAL_TYPE | IFNULL(NAME, 'No name') | SEX_UPON_INTAKE`
+  - 이렇게 지저분하게 나오니, IFNULL(NAME, 'No name') AS NAME으로 해서
+  - `ANIMAL_TYPE | NAME | SEX_UPON_INTAKE`
+  - 으로 하자.
+
 
 </details>
