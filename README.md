@@ -713,6 +713,7 @@ ORDER BY    정렬기준        -- (선택) 정렬
 COUNT()     : 개수 세기
 LOWER()     : 문자열을 소문자로 바꾸는 함수
 IFNULL()    : NULL인 경우(비어있는 경우) 대신 이 안에 있는 걸 보여줌
+COALESCE()  : 여러 값 중 NULL이 아닌 첫 번째 값을 반환하는 함수
 ```
 
 ### LOWER() 예시
@@ -732,6 +733,18 @@ IFNULL()    : NULL인 경우(비어있는 경우) 대신 이 안에 있는 걸 �
 ### IFNULL() 예시
 - IFNULL(검사할_값, NULL일때_대신_보여줄값)
   - 예) IFNULL(NAME, 'No name') = NAME 컬럼의 값이 NULL이면 No name 출력
+
+### COALESCE() 예시
+- COALESCE(값1, 값2, 값3, ...)
+  - 여러 값 중에서 NULL이 아닌 첫 번째 값을 반환한다.
+  - 앞에서부터 순서대로 검사하여 가장 먼저 만나는 NULL이 아닌 값을 출력한다.
+  - 예) 
+  ```sql
+  SELECT COALESCE(NULL, 'A', 'B');   -- 결과: A
+  SELECT COALESCE(NULL, NULL, 'B');  -- 결과: B
+  SELECT COALESCE('A', 'B', 'C');    -- 결과: A
+  ```
+#### IFNULL()과 비슷하지만, IFNULL()은 2개의 값만 비교할 수 있고 COALESCE()는 여러 값을 순서대로 비교할 수 있다.
 
 </details>
 
@@ -1206,6 +1219,71 @@ ORDER BY ANIMAL_ID
   - 이렇게 지저분하게 나오니, IFNULL(NAME, 'No name') AS NAME으로 해서
   - `ANIMAL_TYPE | NAME | SEX_UPON_INTAKE`
   - 으로 하자.
+
+</details>
+
+<details>
+<summary> 코드카타 SQL 16. 식품 생산 공장 목록 출력하기 </summary>
+
+## 코드카타 SQL 16. 식품 생산 공장 목록 출력하기
+- FOOD_WAREHOUSE는 식품 창고의 정보를 담은 테이블
+- WAREHOUSE_ID는 창고의 ID, WAREHOUSE_NAME는 창고의 이름, ADDRESS는 창고의 주소, FREEZER_YN은 창고의 냉동시설 여부를 의미한다.
+- 이때, 테이블에서 `경기도에 위치한 창고`의 ID, 이름, 주소, 냉동시설 여부를 조회하는 SQL문을 작성하라
+  - 단, 이때 냉동 시설 여부가 NULL이면 'N'으로 출력하고, 결과는 창고의 ID를 기준으로 오름차순 정렬한다.
+  - 냉동 시설 여부가 NULL이 아닌 건 Y와 N으로 분류된다.
+
+### 해결
+```sql
+-- 찾는 것 : 창고의 ID, 창고의 이름, 창고의 주소, 창고의 냉동 시설 여부
+SELECT WAREHOUSE_ID, WAREHOUSE_NAME, ADDRESS,
+       -- 창고의 냉동 시설 여부는 COALESCE() 함수 사용
+       -- FREEZER_YN이 NULL이면 'N'으로 출력하고, NULL이 아니면 기존 값을 출력
+       COALESCE(FREEZER_YN, 'N') AS FREEZER_YN
+-- 어디에서? : 식품 창고 테이블에서
+FROM FOOD_WAREHOUSE
+-- 조건 : 경기도에 위치한 창고만 조회
+-- %는 그 뒤에 올 글자를 의미함 : (경기도__)
+WHERE ADDRESS LIKE '경기도%'
+-- 정렬 기준 : 창고 ID를 기준으로 오름차순 정렬
+ORDER BY WAREHOUSE_ID ASC;
+```
+
+### 주의사항
+- %는 와일드카드로, 글자 수와 상관 없는 모든 문자열을 의미한다.
+  - 예) '경기도%' = 경기도 이천시, 경기도 감포시 등등...
+
+### 추가 주의사항
+- COALESCE() 함수에서
+  - `N`이 아니라 `'N'`처럼 문자열로 작성해야 한다.
+  - `COALESCE(FREEZER_YN, 'N')`은 `FREEZER_YN`이 `NULL`일 때만 `'N'`을 반환한다.
+  - `FREEZER_YN` 값이 `'Y'` 또는 `'N'`이면 기존 값이 그대로 출력된다.
+  - `AS FREEZER_YN`을 사용해 결과 컬럼명을 문제에서 요구한 이름과 동일하게 맞춘다.
+  - `ORDER BY WAREHOUSE_ID ASC`로 창고 ID 기준 오름차순 정렬을 한다.
+
+### COALESCE() 설명
+
+`COALESCE()`는 괄호 안에 들어온 값들 중에서 가장 먼저 만나는 `NULL`이 아닌 값을 반환하는 함수이다.
+
+```sql
+COALESCE(FREEZER_YN, 'N')
+```
+
+위 코드는 다음과 같은 의미이다.
+
+```sql
+-- FREEZER_YN이 NULL이 아니면 FREEZER_YN 값을 출력
+-- FREEZER_YN이 NULL이면 'N'을 출력
+```
+
+예시:
+
+```sql
+SELECT COALESCE('Y', 'N');    -- 결과: Y
+SELECT COALESCE('N', 'N');    -- 결과: N
+SELECT COALESCE(NULL, 'N');   -- 결과: N
+```
+
+즉, 이 문제에서는 냉동시설 여부가 입력되어 있으면 기존 값을 사용하고, 값이 비어 있는 `NULL`인 경우에만 `'N'`으로 바꿔 출력한다.
 
 
 </details>
