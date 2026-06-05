@@ -1597,6 +1597,119 @@ ORDER BY HIRE_YMD DESC, DR_NAME ASC
 </details>
 
 
+<details>
+<summary> 코드카타 SQL 20. 가격이 제일 비싼 식품의 정보 출력하기</summary>
 
+## 코드카타 SQL 20. 가격이 제일 비싼 식품의 정보 출력하기
+- FOOD_PRODUCT는 식품 정보를 담은 테이블
+- PRODUCT_ID는 식품 ID, PRODUCT_NAME은 식품 이름, PRODUCT_CD는 식품 코드, CATEGORY는 식품 분류, PRICE는 식품 가격을 의미한다.
+- 가격이 가장 비싼 식품의 모든 정보를 조회하는 SQL문을 작성하라.
+  - 조회 대상: 식품 ID, 식품 이름, 식품 코드, 식품 분류, 식품 가격
+
+### 해결
+
+```sql
+-- 찾는 것 : 가장 비싼 식품의 정보
+-- 식품 ID, 식품 이름, 식품 코드, 식품 분류, 식품 가격
+SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+-- 어디에서? : 식품 정보 테이블에서
+FROM FOOD_PRODUCT
+-- 조건 : 식품 가격이 가장 비싼 가격과 같은 데이터
+-- 가장 비싼 가격을 찾는 게 아니라, 가장 비싼 가격인 FOOD_PRODUCT 행 전체를 찾는다.
+WHERE PRICE = (
+    SELECT MAX(PRICE)
+    FROM FOOD_PRODUCT
+)
+```
+
+### 주의사항
+- 단순히 가장 비싼 가격을 원하는 게 아니다. 
+- **가장 비싼 가격의 행을 원하는 것이다.**
+- 가장 비싼 가격을 먼저 구해야 한다.
+  - `MAX()` 함수는 특정 컬럼의 최댓값을 반환한다.
+  - 최댓값만 구하는 것이 아니라 해당 식품의 정보도 함께 조회해야 한다.
+  - 따라서 `MAX(PRICE)`를 서브쿼리(Subquery)로 사용한다.
+  - 가격이 같은 최고가 식품이 여러 개라면 모두 조회된다.
+- 그러므로 조건인 WHERE에서 PRICE = () 안에 FOOD_PRODUCT에서 MAX(PRICE)를 **서브쿼리**를 사용한다.
+  - 최고가를 가진 식품이 여러 개라면 모두 조회된다.
+### 추가 주의사항
+
+- `MAX(PRICE)`는 최댓값(숫자)만 반환한다.
+- 최댓값에 해당하는 행(Row)의 다른 컬럼은 알 수 없다.
+- 따라서 아래와 같은 코드는 사용할 수 없다.
+
+```sql
+SELECT MAX(PRICE)
+FROM FOOD_PRODUCT;
+```
+
+결과:
+
+```text
+6500
+```
+
+위 쿼리는 가격만 출력하고 식품 정보는 출력하지 못한다.
+
+### 함수 설명
+
+```sql
+MAX() : 특정 컬럼의 최댓값을 반환하는 함수
+```
+
+### MAX() 설명
+
+`MAX()` 함수는 지정한 컬럼에서 가장 큰 값을 반환한다.
+
+기본 형태:
+
+```sql
+MAX(컬럼명)
+```
+
+예시:
+
+```sql
+SELECT MAX(PRICE)
+FROM FOOD_PRODUCT;
+```
+
+결과:
+
+```text
+6500
+```
+
+즉, FOOD_PRODUCT 테이블에서 가장 비싼 가격을 반환한다.
+
+### 서브쿼리 설명
+
+서브쿼리(Subquery)는 SQL문 안에 들어있는 SQL문이다.
+
+예시:
+
+```sql
+SELECT MAX(PRICE)
+FROM FOOD_PRODUCT
+```
+
+실행 결과:
+
+```text
+6500
+```
+
+실제로는 아래와 같이 동작한다.
+
+```sql
+
+SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+FROM FOOD_PRODUCT
+WHERE PRICE = 6500;
+```
+
+따라서 가장 비싼 식품의 정보를 조회할 수 있다.
+
+</details>
 
 
